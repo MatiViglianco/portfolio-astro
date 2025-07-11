@@ -1,0 +1,24 @@
+---
+import ProjectItem from './ProjectItem.astro';
+import cuentaCorrienteImg from '../assets/cuentaCorriente.jpg';
+import coinLatamImg from '../assets/coinLatam.png';
+import p2pImg from '../assets/p2p.jpg';
+import itbankImg from '../assets/itbank.png';
+
+const PROJECTS = [
+    { id_prefix: 'proj1', title: 'AppCuentaCorriente: Gestión de Clientes', description: 'Aplicación web para la gestión de cuentas corrientes de clientes, usando localStorage para persistir los datos. Permite registrar clientes, transacciones y pagos.', image: cuentaCorrienteImg, tags: ['React', 'TypeScript', 'Vite', 'Tailwind CSS'], demoUrl: 'https://mativiglianco.github.io/AppCuentaCorriente/', repoUrl: 'https://github.com/MatiViglianco/AppCuentaCorriente' },
+    { id_prefix: 'proj2', title: 'CoinLatam: Interacción con Criptomonedas', description: 'Proyecto que ofrece cotizaciones de criptomonedas en tiempo real con una interfaz moderna y fluida.', image: coinLatamImg, tags: ['React', 'Next.js', 'Node.js', 'MongoDB'], demoUrl: '#', repoUrl: 'https://github.com/julianvidela/coin-latam' },
+    { id_prefix: 'proj3', title: 'P2Pbetting: A Chainlink Hackathon', description: 'Plataforma descentralizada y segura para apuestas P2P basada en contratos inteligentes en la blockchain.', image: p2pImg, tags: ['Solidity', 'React', 'Hardhat', 'Chainlink'], demoUrl: 'https://martinllobell.github.io/dapp/', repoUrl: 'https://github.com/martinllobell/dapp' },
+    { id_prefix: 'proj4', title: 'ITBANK: Banco Virtual', description: 'Plataforma web de un banco virtual para la gestión de clientes y operaciones financieras.', image: itbankImg, tags: ['Javascript', 'Django', 'PostgreSQL', 'CSS', 'Bootstrap', 'API REST'], demoUrl: '#', repoUrl: 'https://github.com/ItbaGrupo5' }
+];
+---
+<section id="projects" class="py-20">
+    <h2 class="section-title text-3xl font-bold text-white mb-12 flex items-center reveal-on-scroll" data-translate="projects_title">
+        Proyectos Destacados
+    </h2>
+    <div class="space-y-12">
+        {PROJECTS.map(project => (
+            <ProjectItem {...project} />
+        ))}
+    </div>
+</section>

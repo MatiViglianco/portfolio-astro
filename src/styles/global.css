@@ -1,0 +1,104 @@
+/* Contenedor principal del anillo para centrarlo todo */
+.ring-container {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* Aumentamos el tamaño del anillo */
+    width: 350px;
+    height: 350px;
+}
+
+/* El anillo brillante */
+.glowing-ring {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%; /* Lo convierte en un círculo perfecto */
+    border: 4px solid #a855f7; /* Borde violeta */
+    
+    box-shadow: 0 0 10px #a855f7,
+                0 0 20px #a855f7,
+                0 0 30px #a855f7,
+                inset 0 0 10px #a855f7;
+    
+    animation: pulse-glow 2.5s ease-in-out infinite alternate;
+}
+
+/* Animación para el efecto de pulso/brillo */
+@keyframes pulse-glow {
+    from {
+        box-shadow: 0 0 10px #a855f7,
+                    0 0 20px #a855f7,
+                    0 0 30px #a855f7,
+                    inset 0 0 10px #a855f7;
+    }
+    to {
+        box-shadow: 0 0 20px #c084fc,
+                    0 0 40px #c084fc,
+                    0 0 60px #c084fc,
+                    inset 0 0 10px #c084fc;
+    }
+}
+
+/* Estilo para la imagen de perfil que va DENTRO del anillo */
+.profile-image {
+    position: absolute;
+    width: calc(100% - 20px); 
+    height: calc(100% - 20px);
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+.card-certification,
+.card-project,
+.card-education {
+    /* Hacemos el fondo casi transparente para que apenas se note */
+    background-color: rgba(30, 41, 59, 0.2); /* slate-800 con 20% de opacidad */
+    /* Añadimos un borde sutil y semitransparente */
+    border: 1px solid rgba(51, 65, 85, 0.3); /* Borde sutil (slate-700 con 30% opacidad) */
+    backdrop-filter: blur(2px); /* Opcional: añade un efecto de cristal esmerilado */
+    /* Transición más lenta y fluida para todos los efectos */
+    transition: background-color 0.4s ease-out, border-color 0.4s ease-out, transform 0.4s ease-out;
+}
+
+.card-certification:hover,
+.card-project:hover,
+.card-education:hover {
+    background-color: rgba(30, 41, 59, 0.4); /* Un poco más visible al pasar el mouse */
+    border-color: #a855f7; /* Muestra el borde violeta al pasar el mouse */
+}
+
+/* --- Estilos para las Etiquetas de Habilidades (Skill Tags) --- */
+.skill-tag {
+    display: inline-block;
+    background-color: rgba(168, 85, 247, 0.15); /* Fondo violeta muy transparente */
+    color: white; /* Texto violeta claro */
+    padding:0.4rem 0.95rem;
+    border-radius: 9999px; /* Píldora */
+    font-size: 0.975rem; /* Texto pequeño */
+    font-weight: 500;
+    margin-right: 0.5rem;
+    margin-bottom: 0.5rem;
+    transition: background-color 0.4s ease-out, transform 0.4s ease-out;
+}
+
+
+.skill-tag:hover {
+    background-color: rgba(168, 85, 247, 0.3); /* Aumentamos la opacidad del fondo */
+    transform: translateY(-2px); /* Un ligero movimiento hacia arriba */
+}
+
+.reveal-on-scroll {
+  opacity: 0;
+  transform: translateY(80px); /* Aumentado para un deslizamiento más largo */
+  transition: opacity 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94), transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94); /* Más lento y con una curva de aceleración más suave */
+  will-change: opacity, transform;
+}
+.reveal-on-scroll.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}

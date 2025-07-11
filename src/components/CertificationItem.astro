@@ -1,0 +1,14 @@
+---
+// src/components/CertificationItem.astro
+interface Props {
+  title: string;
+  issuer: string;
+  id_prefix: string;
+}
+
+const { title, issuer, id_prefix } = Astro.props;
+---
+<div class="card-certification p-4 rounded-lg transition-transform duration-300 hover:-translate-y-1 reveal-on-scroll">
+    <p class="font-bold text-white" data-translate=`${id_prefix}_title`>{title}</p>
+    <p class="text-gray-400" data-translate=`${id_prefix}_issuer`>{issuer}</p>
+</div>

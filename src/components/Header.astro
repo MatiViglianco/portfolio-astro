@@ -1,0 +1,327 @@
+---
+// src/components/Header.astro
+import { Image } from 'astro:assets';
+import logo from '../assets/logo.png';
+---
+<header class="bg-slate-950/80 backdrop-blur-sm fixed top-0 left-0 right-0 z-50">
+    <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+        <!-- Logo a la izquierda -->
+        <a href="#hero" class="flex-shrink-0">
+            <Image src={logo} alt="Logo de Matías Viglianco" class="h-10 w-auto" />
+        </a>
+        
+        <!-- Menú de Navegación para Escritorio (todo junto a la derecha) -->
+        <nav class="hidden md:flex items-center space-x-4">
+            <a href="#experience" class="hover:text-purple-400 transition-colors duration-300" data-translate="nav_experience">Experiencia</a>
+            <a href="#projects" class="hover:text-purple-400 transition-colors duration-300" data-translate="nav_projects">Proyectos</a>
+            <a href="#skills" class="hover:text-purple-400 transition-colors duration-300" data-translate="nav_skills">Habilidades</a>
+            <a href="#education" class="hover:text-purple-400 transition-colors duration-300" data-translate="nav_education">Educación</a>
+            <a href="#certifications" class="hover:text-purple-400 transition-colors duration-300" data-translate="nav_certifications">Certificaciones</a>
+            
+            <!-- Separador visual y grupo de acciones -->
+            <div class="flex items-center space-x-4 pl-4 border-l border-purple-500">
+                <button id="lang-btn-desktop" class="lang-toggle-button" aria-label="Cambiar idioma">
+                    <span class="lang-option">ES</span>
+                    <span class="lang-option">EN</span>
+                </button>
+            </div>
+        </nav>
+
+        <!-- Botón de Menú para Móvil (Hamburguesa) -->
+        <button id="mobile-menu-button" class="md:hidden text-white p-2">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" />
+            </svg>
+        </button>
+    </div>
+
+    <!-- Menú Desplegable para Móvil -->
+    <div id="mobile-menu" class="mobile-nav-menu">
+        <nav class="flex flex-col items-center p-4">
+            <a href="#experience" class="block text-center py-3 px-4 text-sm hover:bg-slate-800 w-full rounded-md" data-translate="nav_experience_mobile">Experiencia</a>
+            <a href="#projects" class="block text-center py-3 px-4 text-sm hover:bg-slate-800 w-full rounded-md" data-translate="nav_projects_mobile">Proyectos</a>
+            <a href="#skills" class="block text-center py-3 px-4 text-sm hover:bg-slate-800 w-full rounded-md" data-translate="nav_skills_mobile">Habilidades</a>
+            <a href="#education" class="block text-center py-3 px-4 text-sm hover:bg-slate-800 w-full rounded-md" data-translate="nav_education_mobile">Educación</a>
+            <a href="#certifications" class="block text-center py-3 px-4 text-sm hover:bg-slate-800 w-full rounded-md" data-translate="nav_certifications_mobile">Certificaciones</a>
+            
+            <div class="mt-6">
+                <button id="lang-btn-mobile" class="lang-toggle-button" aria-label="Cambiar idioma">
+                    <span class="lang-option">ES</span>
+                    <span class="lang-option">EN</span>
+                </button>
+            </div>
+        </nav>
+    </div>
+</header>
+
+<script is:inline>
+    function setupHeader() {
+        // --- Lógica del Menú Móvil ---
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        
+        if (mobileMenuButton && mobileMenu) {
+            mobileMenuButton.onclick = () => {
+                mobileMenu.classList.toggle('is-open');
+            };
+
+            const mobileMenuLinks = mobileMenu.querySelectorAll('a');
+            for (const link of mobileMenuLinks) {
+                link.onclick = () => {
+                    mobileMenu.classList.remove('is-open');
+                };
+            }
+
+            // CORRECCIÓN: Cierra el menú móvil si la ventana se agranda
+            window.addEventListener('resize', () => {
+                if (window.innerWidth >= 768) { // 768px es el breakpoint 'md' de Tailwind
+                    mobileMenu.classList.remove('is-open');
+                }
+            });
+        }
+
+        // --- Lógica del Selector de Idioma ---
+        const translations = {
+            en: {
+                nav_experience: "Experience",
+                nav_projects: "Projects",
+                nav_skills: "Skills",
+                nav_education: "Education",
+                nav_certifications: "Certifications",
+                nav_experience_mobile: "Experience",
+                nav_projects_mobile: "Projects",
+                nav_skills_mobile: "Skills",
+                nav_education_mobile: "Education",
+                nav_certifications_mobile: "Certifications",
+                hero_subtitle: "Software Developer & Data Analyst",
+                hero_description: "Professional with 5 years of experience in the IT sector, specializing in data analysis, software development, and Artificial Intelligence. My focus is on applying technology to optimize processes and create valuable solutions.",
+                hero_contact_button: "Contact Me",
+                experience_title: "Professional Experience",
+                exp1_date: "Feb 2025 - Present",
+                exp1_title: "Software Developer & Data Analyst",
+                exp1_desc1: "Responsible for optimizing business processes through custom technological solutions.",
+                exp1_desc2: "Led the creation of an internal application for managing current accounts, applying DDD and React.js.",
+                exp1_desc3: "Redesigned the data infrastructure in Microsoft Excel and Google Sheets to facilitate economic analysis.",
+                exp2_date: "Jun 2024 - Jan 2025",
+                exp2_title: "Python Developer",
+                exp2_desc1: "Improved the quality of AI responses by providing feedback on code and text quality.",
+                exp2_desc2: "Contributed to the continuous improvement of the model through machine learning (PyTorch, Pandas, Matplotlib).",
+                exp2_desc3: "Optimized the modeling of the AI response for the Google Flights API, improving accuracy by 30%.",
+                projects_title: "Featured Projects",
+                proj1_title: "AppCuentaCorriente: Customer Management",
+                proj1_desc: "Web application for managing customer current accounts, using localStorage to persist data. Allows registering customers, transactions, and payments.",
+                proj2_title: "CoinLatam: Cryptocurrency Interaction",
+                proj2_desc: "Project that offers real-time cryptocurrency quotes with a modern and fluid interface.",
+                proj3_title: "P2Pbetting: A Chainlink Hackathon",
+                proj3_desc: "Decentralized and secure platform for P2P betting based on smart contracts on the blockchain.",
+                view_demo: "View Demo →",
+                source_code: "Source Code →",
+                skills_title: "Technical Skills",
+                skills_cat1_title: "Software Design",
+                skills_cat2_title: "Programming",
+                skills_cat3_title: "Databases",
+                skills_cat4_title: "Technologies & Frameworks",
+                education_title: "Formal Education",
+                edu1_title: "Bachelor's Degree in Computer Science",
+                edu1_school: "Siglo 21 University (Mar 2025 - 2028)",
+                edu2_title: "Systems Engineering",
+                edu2_school: "National Technological University (Jan 2020 - Apr 2025)",
+                edu3_title: "Full Stack Developer",
+                edu3_school: "ITBA University (May 2022 - Sep 2022)",
+                certifications_title: "Licenses & Certifications",
+                cert1_title: "Google Data Analytics",
+                cert1_issuer: "Coursera (Sep 2024)",
+                cert2_title: "Modern Software Architecture",
+                cert2_issuer: "Udemy (Mar 2024)",
+                cert3_title: "SOLID Principles and Clean Code",
+                cert3_issuer: "Udemy (Mar 2024)",
+                cert4_title: "Typescript: From the Basics",
+                cert4_issuer: "Udemy (Dec 2023)",
+                cert5_title: "AWS Cloud Technical Essentials",
+                cert5_issuer: "Coursera (Feb 2023)",
+                cert6_title: "Google Cloud: Bits and Bytes of Networking",
+                cert6_issuer: "Coursera (Oct 2023)",
+                cert7_title: "EF SET 44/100 (B1 Intermediate)",
+                cert7_issuer: "EF SET (Jun 2024)",
+                cert8_title: "Backend 1: Introduction to Java",
+                cert8_issuer: "Egg (May 2023)",
+                cert9_title: "React Js",
+                cert9_issuer: "Coderhouse (Sep 2022)",
+                contact_title: "Let's Talk",
+                contact_description: "I'm looking for new opportunities and my inbox is always open. Whether you have a question or just want to say hi, I'll do my best to get back to you!",
+                contact_email_button: "Send Email",
+                contact_wsp_button: "Send WhatsApp",
+                contact_cv_button: "Download CV",
+                footer_text: "© 2025 Matías Agustín Viglianco. Designed and built by Matías Viglianco."
+            },
+            es: {
+                nav_experience: "Experiencia",
+                nav_projects: "Proyectos",
+                nav_skills: "Habilidades",
+                nav_education: "Educación",
+                nav_certifications: "Certificaciones",
+                nav_experience_mobile: "Experiencia",
+                nav_projects_mobile: "Proyectos",
+                nav_skills_mobile: "Habilidades",
+                nav_education_mobile: "Educación",
+                nav_certifications_mobile: "Certificaciones",
+                hero_subtitle: "Desarrollador de Software & Analista de Datos",
+                hero_description: "Profesional con 5 años de experiencia en el sector IT, especializado en análisis de datos, desarrollo de software e Inteligencia Artificial. Mi enfoque es aplicar la tecnología para optimizar procesos y crear soluciones de valor.",
+                hero_contact_button: "Contáctame",
+                experience_title: "Experiencia Profesional",
+                exp1_date: "feb 2025 - Presente",
+                exp1_title: "Desarrollador de Software & Analista de Datos",
+                exp1_desc1: "Responsable de la optimización de procesos de negocio a través de soluciones tecnológicas a medida.",
+                exp1_desc2: "Lideré la creación de una aplicación interna para gestión de cuentas corrientes, aplicando DDD y React.js.",
+                exp1_desc3: "Rediseñé la infraestructura de datos en Microsoft Excel y Google Sheets para facilitar el análisis económico.",
+                exp2_date: "jun 2024 - ene 2025",
+                exp2_title: "Desarrollador de Python",
+                exp2_desc1: "Mejoré la calidad de las respuestas de IA, aportando feedback sobre la calidad del código y el texto.",
+                exp2_desc2: "Contribuí a la mejora continua del modelo mediante aprendizaje automático (PyTorch, Pandas, Matplotlib).",
+                exp2_desc3: "Optimicé el modelado de la respuesta de la IA para la API de vuelos de Google, mejorando la precisión en un 30%.",
+                projects_title: "Proyectos Destacados",
+                proj1_title: "AppCuentaCorriente: Gestión de Clientes",
+                proj1_desc: "Aplicación web para la gestión de cuentas corrientes de clientes, usando localStorage para persistir los datos. Permite registrar clientes, transacciones y pagos.",
+                proj2_title: "CoinLatam: Interacción con Criptomonedas",
+                proj2_desc: "Proyecto que ofrece cotizaciones de criptomonedas en tiempo real con una interfaz moderna y fluida.",
+                proj3_title: "P2Pbetting: A Chainlink Hackathon",
+                proj3_desc: "Plataforma descentralizada y segura para apuestas P2P basada en contratos inteligentes en la blockchain.",
+                view_demo: "Ver Demo →",
+                source_code: "Código Fuente →",
+                skills_title: "Habilidades Técnicas",
+                skills_cat1_title: "Diseño de Software",
+                skills_cat2_title: "Programación",
+                skills_cat3_title: "Bases de Datos",
+                skills_cat4_title: "Tecnologías y Frameworks",
+                education_title: "Educación Formal",
+                edu1_title: "Licenciatura en Informática",
+                edu1_school: "Universidad Siglo 21 (mar. 2025 - 2028)",
+                edu2_title: "Ingeniería en sistemas",
+                edu2_school: "Universidad Tecnológica Nacional (ene. 2020 - abr. 2025)",
+                edu3_title: "Full Stack Developer",
+                edu3_school: "ITBA University (may. 2022 - sept. 2022)",
+                certifications_title: "Licencias y Certificaciones",
+                cert1_title: "Análisis de Datos de Google",
+                cert1_issuer: "Coursera (sept. 2024)",
+                cert2_title: "Arquitectura Software Moderna",
+                cert2_issuer: "Udemy (mar. 2024)",
+                cert3_title: "Principios SOLID y Clean Code",
+                cert3_issuer: "Udemy (mar. 2024)",
+                cert4_title: "Typescript: Desde las Bases",
+                cert4_issuer: "Udemy (dic. 2023)",
+                cert5_title: "AWS Cloud Technical Essentials",
+                cert5_issuer: "Coursera (feb. 2023)",
+                cert6_title: "Google Cloud: Bits y Bytes de Redes",
+                cert6_issuer: "Coursera (oct. 2023)",
+                cert7_title: "EF SET 44/100 (B1 Intermediate)",
+                cert7_issuer: "EF SET (jun. 2024)",
+                cert8_title: "Backend 1: Introducción a Java",
+                cert8_issuer: "Egg (may. 2023)",
+                cert9_title: "React Js",
+                cert9_issuer: "Coderhouse (sept. 2022)",
+                contact_title: "Hablemos",
+                contact_description: "Estoy buscando nuevas oportunidades y mi bandeja de entrada siempre está abierta. Si tienes alguna pregunta o simplemente quieres saludar, ¡haré todo lo posible por responderte!",
+                contact_email_button: "Enviar Correo",
+                contact_wsp_button: "Enviar WhatsApp",
+                contact_cv_button: "Descargar CV",
+                footer_text: "© 2025 Matías Agustín Viglianco. Diseñado y construido por Matías Viglianco."
+            }
+        };
+
+        const cvPaths = {
+            es: '/CV-ES.pdf',
+            en: '/CV-EN.pdf'
+        };
+        
+        const btnDesktop = document.getElementById('lang-btn-desktop');
+        const btnMobile = document.getElementById('lang-btn-mobile');
+        let currentLang = 'es';
+
+        function updateLanguage(lang) {
+            document.documentElement.lang = lang;
+            const elements = document.querySelectorAll('[data-translate]');
+            elements.forEach(el => {
+                const key = el.getAttribute('data-translate');
+                if (translations[lang] && translations[lang][key]) {
+                    el.innerHTML = translations[lang][key];
+                }
+            });
+
+            const cvDownloadLink = document.getElementById('cv-download-link');
+            if (cvDownloadLink) {
+                cvDownloadLink.href = cvPaths[lang];
+                cvDownloadLink.setAttribute('download', lang === 'en' ? 'CV-Matias-Viglianco-EN.pdf' : 'CV-Matias-Viglianco-ES.pdf');
+            }
+        }
+        
+        function setLanguage(lang) {
+            currentLang = lang;
+            const isEnglish = lang === 'en';
+            if (btnDesktop) btnDesktop.classList.toggle('lang-en', isEnglish);
+            if (btnMobile) btnMobile.classList.toggle('lang-en', isEnglish);
+            updateLanguage(lang);
+        }
+
+        function toggleLanguage() {
+            const newLang = currentLang === 'es' ? 'en' : 'es';
+            setLanguage(newLang);
+        }
+
+        if (btnDesktop) btnDesktop.onclick = toggleLanguage;
+        if (btnMobile) btnMobile.onclick = toggleLanguage;
+
+        setLanguage('es');
+    }
+
+    document.addEventListener('DOMContentLoaded', setupHeader);
+    document.addEventListener('astro:after-swap', setupHeader);
+</script>
+
+<style>
+    /* Estilos para el nuevo botón de idioma */
+    .lang-toggle-button {
+        position: relative;
+        width: 55px;
+        height: 28px;
+        border: 1px solid #a855f7; 
+        border-radius: 9999px;
+        overflow: hidden;
+        cursor: pointer;
+        background-color: transparent;
+        color: white;
+        -webkit-tap-highlight-color: transparent;
+    }
+    .lang-toggle-button .lang-option {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        transition: transform 0.3s ease, opacity 0.3s ease;
+        font-weight: 500;
+        font-size: 0.875rem;
+    }
+    .lang-toggle-button .lang-option:nth-child(2) {
+        transform: translate(-50%, 150%);
+        opacity: 0;
+    }
+    .lang-toggle-button.lang-en .lang-option:nth-child(1) {
+        transform: translate(-50%, -150%);
+        opacity: 0;
+    }
+    .lang-toggle-button.lang-en .lang-option:nth-child(2) {
+        transform: translate(-50%, -50%);
+        opacity: 1;
+    }
+
+    /* Estilos para la animación del menú móvil */
+    .mobile-nav-menu {
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.5s ease-in-out;
+        background-color: rgba(15, 23, 42, 0.95); /* bg-slate-950/95 */
+        backdrop-filter: blur(4px);
+    }
+    .mobile-nav-menu.is-open {
+        max-height: 30rem; /* Un valor suficientemente grande */
+    }
+</style>
