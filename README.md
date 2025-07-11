@@ -1,68 +1,76 @@
-# Astro Starter Kit: Blog
+Portafolio Personal de Matías Viglianco
+¡Bienvenido al repositorio de mi portafolio personal! Este proyecto fue creado desde cero con Astro y estilizado con Tailwind CSS para mostrar mis habilidades, proyectos y experiencia profesional de una manera moderna y dinámica.
 
-```sh
-npm create astro@latest -- --template blog
-```
+Puedes ver el sitio en vivo aquí: https://MatiViglianco.github.io/portfolio-astro/
 
-[![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/withastro/astro/tree/latest/examples/blog)
-[![Open with CodeSandbox](https://assets.codesandbox.io/github/button-edit-lime.svg)](https://codesandbox.io/p/sandbox/github/withastro/astro/tree/latest/examples/blog)
-[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/withastro/astro?devcontainer_path=.devcontainer/blog/devcontainer.json)
+✨ Características Principales
+Diseño Moderno y Responsivo: Totalmente adaptable a cualquier dispositivo, desde móviles hasta pantallas de escritorio.
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+Animaciones Dinámicas: Implementación de animaciones de aparición al hacer scroll para una experiencia de usuario más atractiva.
 
-![blog](https://github.com/withastro/astro/assets/2244813/ff10799f-a816-4703-b967-c78997e8323d)
+Soporte Multi-idioma: Funcionalidad para cambiar entre Español e Inglés, con traducciones gestionadas a través de un script personalizado.
 
-Features:
+Componentes Modulares: Estructurado con componentes reutilizables de Astro para un mantenimiento y escalabilidad sencillos.
 
-- ✅ Minimal styling (make it your own!)
-- ✅ 100/100 Lighthouse performance
-- ✅ SEO-friendly with canonical URLs and OpenGraph data
-- ✅ Sitemap support
-- ✅ RSS Feed support
-- ✅ Markdown & MDX support
+Optimización de Activos: Uso de los componentes <Image> de Astro para optimizar el rendimiento y la carga de imágenes.
 
-## 🚀 Project Structure
+Despliegue Automatizado: Configuración de GitHub Actions para un despliegue continuo en GitHub Pages.
 
-Inside of your Astro project, you'll see the following folders and files:
+🛠️ Tecnologías Utilizadas
+Framework Principal: Astro
 
-```text
-├── public/
+Estilos: Tailwind CSS
+
+Despliegue: GitHub Pages
+
+CI/CD: GitHub Actions
+
+🚀 Estructura del Proyecto
+El proyecto está organizado siguiendo las mejores prácticas de Astro:
+
+.
+├── public/              # Activos estáticos (imágenes, SVGs, PDFs para descarga)
 ├── src/
-│   ├── components/
-│   ├── content/
-│   ├── layouts/
-│   └── pages/
-├── astro.config.mjs
-├── README.md
+│   ├── assets/          # Imágenes y otros activos que serán optimizados por Astro
+│   ├── components/      # Componentes reutilizables de Astro (.astro)
+│   ├── layouts/         # Plantillas principales de la página
+│   └── pages/           # Páginas y rutas del sitio
+├── astro.config.mjs     # Archivo de configuración de Astro
 ├── package.json
-└── tsconfig.json
-```
+└── README.md
 
-Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
+src/components: Contiene todos los componentes modulares que conforman las diferentes secciones del portafolio (Hero, Experience, Projects, etc.).
 
-There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
+src/layouts: Define la estructura HTML base, importando estilos globales y scripts.
 
-The `src/content/` directory contains "collections" of related Markdown and MDX documents. Use `getCollection()` to retrieve posts from `src/content/blog/`, and type-check your frontmatter using an optional schema. See [Astro's Content Collections docs](https://docs.astro.build/en/guides/content-collections/) to learn more.
+public: Almacena los archivos que necesitan ser accesibles directamente a través de una URL, como los CVs para descargar y los íconos.
 
-Any static assets, like images, can be placed in the `public/` directory.
+🧞 Comandos
+Todos los comandos se ejecutan desde la raíz del proyecto, en una terminal:
 
-## 🧞 Commands
+Comando
 
-All commands are run from the root of the project, from a terminal:
+Acción
 
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
+npm install
 
-## 👀 Want to learn more?
+Instala las dependencias del proyecto.
 
-Check out [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+npm run dev
 
-## Credit
+Inicia el servidor de desarrollo en localhost:4321.
 
-This theme is based off of the lovely [Bear Blog](https://github.com/HermanMartinus/bearblog/).
+npm run build
+
+Compila el sitio para producción en la carpeta ./dist/.
+
+npm run preview
+
+Previsualiza el sitio compilado localmente.
+
+👀 Contacto
+Si quieres saber más sobre mi trabajo o tienes alguna pregunta, no dudes en contactarme:
+
+LinkedIn: Matías Agustín Viglianco
+
+GitHub: @MatiViglianco
