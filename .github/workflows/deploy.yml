@@ -1,0 +1,40 @@
+# .github/workflows/deploy.yml
+
+name: Deploy to GitHub Pages
+
+on:
+  # Se ejecuta cada vez que haces un push a la rama `main`
+  push:
+    branches: [ main ]
+  # Te permite ejecutarlo manualmente desde la pestaña Actions en GitHub
+  workflow_dispatch:
+
+# Permisos para que la acción pueda escribir en tu repositorio
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout your repository using git
+        uses: actions/checkout@v4
+      - name: Install, build, and upload your site
+        uses: withastro/action@v2
+        # with:
+          # path: . # La ruta raíz de tu proyecto en el repositorio (opcional)
+          # node-version: 20 # La versión de Node.js a usar (opcional)
+          # package-manager: npm # El gestor de paquetes a usar (opcional)
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
