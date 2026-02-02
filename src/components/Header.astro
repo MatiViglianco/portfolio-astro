@@ -2,6 +2,8 @@
 // src/components/Header.astro
 import { Image } from 'astro:assets';
 import logo from '../assets/logo.png';
+
+const baseUrl = import.meta.env.BASE_URL;
 ---
 <header class="bg-slate-950/80 backdrop-blur-sm fixed top-0 left-0 right-0 z-50">
     <div class="container mx-auto px-6 py-4 flex justify-between items-center">
@@ -55,7 +57,7 @@ import logo from '../assets/logo.png';
     </div>
 </header>
 
-<script is:inline>
+<script is:inline define:vars={{ baseUrl }}>
     function setupHeader() {
         // --- Lógica del Menú Móvil ---
         const mobileMenuButton = document.getElementById('mobile-menu-button');
@@ -112,6 +114,10 @@ import logo from '../assets/logo.png';
                 proj3_desc: "Decentralized and secure platform for P2P betting based on smart contracts on the blockchain.",
                 proj4_title: "ITBANK: Virtual Bank",
                 proj4_desc: "Web platform for a virtual bank for customer management and financial operations.",
+                proj5_title: "Naranja Autoservicio (Django + React e-commerce)",
+                proj5_desc: "Online store for a grocery market with Django/DRF and Vite/React. Catalog, stock, coupons and orders; persistent cart and WhatsApp checkout. Accent-tolerant search, promotions and admin stats. CI/CD on Dokploy with Postgres.",
+                proj6_title: "Internal Operations & Finance ERP (Kretz)",
+                proj6_desc: "Internal ERP with sales, expenses, current accounts and analytics modules. Integrates bank data, manual expense entry, category classification and chart-based dashboards. Stack: Django/DRF, React, MUI, Chart.js, PostgreSQL, JWT and Docker, with a focus on performance and data consistency.",
                 view_demo: "View Demo →",
                 source_code: "Source Code →",
                 skills_title: "Technical Skills",
@@ -188,6 +194,10 @@ import logo from '../assets/logo.png';
                 proj3_desc: "Plataforma descentralizada y segura para apuestas P2P basada en contratos inteligentes en la blockchain.",
                 proj4_title: "ITBANK: Banco Virtual",
                 proj4_desc: "Plataforma web de un banco virtual para la gestión de clientes y operaciones financieras.",
+                proj5_title: "Naranja Autoservicio (e-commerce Django + React)",
+                proj5_desc: "Tienda online para autoservicio con Django/DRF y Vite/React. Catálogo, stock, cupones y órdenes; carrito persistente y checkout por WhatsApp. Búsqueda sin acentos, promociones y estadísticas en el admin. CI/CD en Dokploy con Postgres.",
+                proj6_title: "ERP Interno de Operaciones y Finanzas (Kretz)",
+                proj6_desc: "ERP interno con módulos de ventas, gastos, cuentas corrientes y estadísticas. Integra datos bancarios, carga manual de egresos, clasificación por categorías y visualizaciones con gráficos. Stack: Django/DRF, React, MUI, Chart.js, PostgreSQL, JWT y Docker. Enfoque en performance, consistencia de datos y experiencia de usuario.",
                 view_demo: "Ver Demo →",
                 source_code: "Código Fuente →",
                 skills_title: "Habilidades Técnicas",
@@ -231,8 +241,8 @@ import logo from '../assets/logo.png';
         };
 
         const cvPaths = {
-            es: '/portfolio-astro/CV-ES.pdf',
-            en: '/portfolio-astro/CV-EN.pdf'
+            es: `${baseUrl}CV-ES.pdf`,
+            en: `${baseUrl}CV-EN.pdf`
         };
         
         const btnDesktop = document.getElementById('lang-btn-desktop');

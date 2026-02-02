@@ -8,8 +8,10 @@ interface Props {
 }
 
 const { title } = Astro.props;
-const siteUrl = "https://MatiViglianco.github.io/portfolio-astro/";
-const ogImageUrl = `${siteUrl}og-image.png`;
+const baseUrl = import.meta.env.BASE_URL;
+const siteUrl = new URL(baseUrl, "https://MatiViglianco.github.io").toString();
+const ogImageUrl = new URL("og-image.svg", siteUrl).toString();
+const faviconUrl = `${baseUrl}favicon.svg`;
 ---
 <!doctype html>
 <html lang="es">
@@ -17,7 +19,7 @@ const ogImageUrl = `${siteUrl}og-image.png`;
 		<meta charset="UTF-8" />
 		<meta name="description" content="Portafolio de Matías Viglianco, Desarrollador de Software y Analista de Datos." />
 		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/svg+xml" href="/portfolio-astro//favicon.svg" />
+		<link rel="icon" type="image/svg+xml" href={faviconUrl} />
 		<meta name="generator" content={Astro.generator} />
 		<title>{title}</title>
 

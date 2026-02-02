@@ -5,23 +5,54 @@ import { Image } from 'astro:assets';
 interface Props {
   title: string;
   description: string;
-  image: ImageMetadata; // Solo permite imágenes locales importadas
+  image?: ImageMetadata; // Permite imágenes locales importadas
+  images?: ImageMetadata[]; // Soporte para carrusel
   tags: string[];
   demoUrl?: string;
   repoUrl?: string;
   id_prefix: string;
 }
 
-const { title, description, image, tags, demoUrl, repoUrl, id_prefix } = Astro.props;
+const { title, description, image, images: imagesProp, tags, demoUrl, repoUrl, id_prefix } = Astro.props;
+const images = imagesProp ?? (image ? [image] : []);
+const hasCarousel = images.length > 1;
 ---
 <div class="card-project rounded-lg flex flex-col md:flex-row items-center transition-transform transform hover:-translate-y-2 duration-300 overflow-hidden reveal-on-scroll">
     <div class="md:w-1/2 p-4">
-      <Image src={image} alt={`Vista previa del proyecto ${title}`} class="w-full h-auto object-cover rounded-md" width={800} height={600} />
+        <div class="project-carousel" data-project-carousel>
+            <div class="project-carousel-track" data-carousel-track>
+                {images.map((img, index) => (
+                    <div class="project-carousel-slide" data-carousel-slide>
+                        <Image
+                            src={img}
+                            alt={`Vista previa del proyecto ${title}${hasCarousel ? ` (${index + 1})` : ''}`}
+                            class="w-full h-auto object-cover rounded-md"
+                            width={800}
+                            height={600}
+                        />
+                    </div>
+                ))}
+            </div>
+            {hasCarousel && (
+                <>
+                    <button class="project-carousel-button project-carousel-button--prev" type="button" data-carousel-prev aria-label="Imagen anterior">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4">
+                            <path d="M15 18l-6-6 6-6" />
+                        </svg>
+                    </button>
+                    <button class="project-carousel-button project-carousel-button--next" type="button" data-carousel-next aria-label="Imagen siguiente">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4">
+                            <path d="M9 18l6-6-6-6" />
+                        </svg>
+                    </button>
+                </>
+            )}
+        </div>
     </div>
     <div class="md:w-1/2 p-6 flex flex-col">
         <div class="flex-grow">
-            <h3 class="text-4xl font-bold text-white mb-2" data-translate=`${id_prefix}_title`>{title}</h3>
-            <p class="text-gray-400 mb-4 text-lg" data-translate=`${id_prefix}_desc`>{description}</p>
+            <h3 class="text-4xl font-bold text-white mb-2" data-translate={`${id_prefix}_title`}>{title}</h3>
+            <p class="text-gray-400 mb-4 text-lg" data-translate={`${id_prefix}_desc`}>{description}</p>
         </div>
         <div>
             <div class="mb-4">
@@ -38,3 +69,106 @@ const { title, description, image, tags, demoUrl, repoUrl, id_prefix } = Astro.p
         </div>
     </div>
 </div>
+
+<script is:inline>
+    function setupProjectCarousels() {
+        const carousels = document.querySelectorAll('[data-project-carousel]');
+        for (const carousel of carousels) {
+            if (carousel.dataset.carouselInitialized === 'true') continue;
+            carousel.dataset.carouselInitialized = 'true';
+
+            const track = carousel.querySelector('[data-carousel-track]');
+            const slides = Array.from(carousel.querySelectorAll('[data-carousel-slide]'));
+            if (slides.length <= 1) continue;
+
+            let currentIndex = 0;
+            let autoTimer = null;
+            const setActive = (index) => {
+                currentIndex = (index + slides.length) % slides.length;
+                if (track) {
+                    track.style.transform = `translateX(-${currentIndex * 100}%)`;
+                }
+            };
+
+            const startAuto = () => {
+                if (autoTimer) {
+                    window.clearInterval(autoTimer);
+                }
+                autoTimer = window.setInterval(() => {
+                    setActive(currentIndex + 1);
+                }, 2000);
+            };
+
+            const next = () => {
+                setActive(currentIndex + 1);
+                startAuto();
+            };
+
+            const prev = () => {
+                setActive(currentIndex - 1);
+                startAuto();
+            };
+
+            setActive(0);
+            startAuto();
+
+            const prevButton = carousel.querySelector('[data-carousel-prev]');
+            const nextButton = carousel.querySelector('[data-carousel-next]');
+            if (prevButton) {
+                prevButton.addEventListener('click', (event) => {
+                    event.preventDefault();
+                    prev();
+                });
+            }
+            if (nextButton) {
+                nextButton.addEventListener('click', (event) => {
+                    event.preventDefault();
+                    next();
+                });
+            }
+
+            // Swipe para móvil
+            let touchStartX = null;
+            let touchStartY = null;
+            const swipeThreshold = 40;
+
+            const onTouchStart = (event) => {
+                const touch = event.touches[0];
+                if (!touch) return;
+                touchStartX = touch.clientX;
+                touchStartY = touch.clientY;
+            };
+
+            const onTouchEnd = (event) => {
+                const touch = event.changedTouches[0];
+                if (!touch || touchStartX === null || touchStartY === null) return;
+
+                const deltaX = touch.clientX - touchStartX;
+                const deltaY = touch.clientY - touchStartY;
+
+                if (Math.abs(deltaX) > Math.abs(deltaY) && Math.abs(deltaX) > swipeThreshold) {
+                    if (deltaX < 0) {
+                        next();
+                    } else {
+                        prev();
+                    }
+                }
+
+                touchStartX = null;
+                touchStartY = null;
+            };
+
+            const onTouchCancel = () => {
+                touchStartX = null;
+                touchStartY = null;
+            };
+
+            carousel.addEventListener('touchstart', onTouchStart, { passive: true });
+            carousel.addEventListener('touchend', onTouchEnd);
+            carousel.addEventListener('touchcancel', onTouchCancel);
+        }
+    }
+
+    document.addEventListener('DOMContentLoaded', setupProjectCarousels);
+    document.addEventListener('astro:after-swap', setupProjectCarousels);
+</script>
