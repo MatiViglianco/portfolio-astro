@@ -4,6 +4,7 @@ import { Image } from 'astro:assets';
 import logo from '../assets/logo.png';
 
 const baseUrl = import.meta.env.BASE_URL;
+const cvVersion = "20260203";
 ---
 <header class="bg-slate-950/80 backdrop-blur-sm fixed top-0 left-0 right-0 z-50">
     <div class="container mx-auto px-6 py-4 flex justify-between items-center">
@@ -57,7 +58,7 @@ const baseUrl = import.meta.env.BASE_URL;
     </div>
 </header>
 
-<script is:inline define:vars={{ baseUrl }}>
+<script is:inline define:vars={{ baseUrl, cvVersion }}>
     function setupHeader() {
         // --- Lógica del Menú Móvil ---
         const mobileMenuButton = document.getElementById('mobile-menu-button');
@@ -241,8 +242,8 @@ const baseUrl = import.meta.env.BASE_URL;
         };
 
         const cvPaths = {
-            es: `${baseUrl}CV-ES.pdf`,
-            en: `${baseUrl}CV-EN.pdf`
+            es: `${baseUrl}CV-ES.pdf?v=${cvVersion}`,
+            en: `${baseUrl}CV-EN.pdf?v=${cvVersion}`
         };
         
         const btnDesktop = document.getElementById('lang-btn-desktop');
