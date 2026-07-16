@@ -16,14 +16,10 @@ import erp6Img from '../assets/erp6.jpg';
 import erp7Img from '../assets/erp7.jpg';
 import erp8Img from '../assets/erp8.jpg';
 import erp9Img from '../assets/erp9.jpg';
-import crm1Img from '../assets/crm1.jpg';
-import crm2Img from '../assets/crm2b.jpg';
-import ops1Img from '../assets/ops1.jpg';
-import ops2Img from '../assets/ops2.jpg';
-import conciliar1Img from '../assets/conciliar1.jpg';
-import conciliar2Img from '../assets/conciliar2.jpg';
-import vales1Img from '../assets/vales1.jpg';
-import vales2Img from '../assets/vales2.jpg';
+import crmMarimboImg from '../assets/crmMarimbo.svg';
+import whatsappIAImg from '../assets/whatsappIA.svg';
+import conciliacionImg from '../assets/conciliacion.svg';
+import valesOcrImg from '../assets/valesOcr.svg';
 import cartaPorteImg from '../assets/cartaPorte.svg';
 import aumaxImg from '../assets/aumax.svg';
 import recibosImg from '../assets/recibos.svg';
@@ -33,7 +29,7 @@ const PROJECTS = [
         id_prefix: 'proj8',
         title: 'CRM Multi-canal de WhatsApp',
         description: 'Monitor operativo tipo CRM que unifica varios números de WhatsApp de la empresa (clientes, equipo interno y cartas de porte) en una sola bandeja: conversaciones con estados de resolución, salud de colas por canal, alertas, historial, audios y reportes. Frontend React contra API REST de Django. Proyecto privado para MolinosMarimbo.',
-        images: [crm1Img, crm2Img],
+        image: crmMarimboImg,
         tags: ['React', 'Django', 'DRF', 'WhatsApp Cloud API', 'PostgreSQL', 'Docker'],
         demoUrl: 'https://crm.marimbo.cloud/'
     },
@@ -41,7 +37,7 @@ const PROJECTS = [
         id_prefix: 'proj12',
         title: 'Transcripción y Resumen de Audios con IA',
         description: 'Sistema productivo que recibe audios de vendedores por WhatsApp Cloud API y los procesa de forma asíncrona: descarga, conversión, transcripción y resumen con IA (Gemini/OpenAI), panel con filtros y estadísticas por vendedor, y campañas por templates aprobados en Meta. Proyecto privado para MolinosMarimbo.',
-        images: [ops1Img, ops2Img],
+        image: whatsappIAImg,
         tags: ['Django', 'Celery', 'Redis', 'PostgreSQL', 'Gemini', 'WhatsApp Cloud API', 'Docker']
     },
     {
@@ -69,14 +65,14 @@ const PROJECTS = [
         id_prefix: 'proj13',
         title: 'Conciliación Bancaria Automática con IA',
         description: 'Backend Django/DRF para conciliación bancaria automática y asistida por IA. Importa extractos XLSX de 6 bancos argentinos, propone matches validados localmente y deja la decisión final a un operador vía API. Stack con Celery, MinIO y despliegue en Dokploy. Proyecto privado para MolinosMarimbo.',
-        images: [conciliar1Img, conciliar2Img],
+        image: conciliacionImg,
         tags: ['Django', 'DRF', 'Gemini', 'Celery', 'PostgreSQL', 'MinIO', 'Docker']
     },
     {
         id_prefix: 'proj7',
         title: 'Vales OCR: Digitalización de Vales Manuscritos',
         description: 'Plataforma web que digitaliza vales manuscritos con OCR asistido por IA: carga de fotos, extracción de datos, match contra clientes reales con alias sugeridos, revisión manual y carga de lotes al ERP. Frontend React con JWT y CSP estricta, deploy automático con GitHub Actions y Dokploy.',
-        images: [vales1Img, vales2Img],
+        image: valesOcrImg,
         tags: ['React', 'Django', 'OCR', 'Gemini', 'JWT', 'Nginx', 'GitHub Actions'],
         demoUrl: 'https://vales.mativiglianco.cloud/'
     },
