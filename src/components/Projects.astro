@@ -16,8 +16,70 @@ import erp6Img from '../assets/erp6.jpg';
 import erp7Img from '../assets/erp7.jpg';
 import erp8Img from '../assets/erp8.jpg';
 import erp9Img from '../assets/erp9.jpg';
+import crm1Img from '../assets/crm1.jpg';
+import crm2Img from '../assets/crm2b.jpg';
+import ops1Img from '../assets/ops1.jpg';
+import ops2Img from '../assets/ops2.jpg';
+import conciliar1Img from '../assets/conciliar1.jpg';
+import conciliar2Img from '../assets/conciliar2.jpg';
+import vales1Img from '../assets/vales1.jpg';
+import vales2Img from '../assets/vales2.jpg';
+import cartaPorteImg from '../assets/cartaPorte.svg';
+import aumaxImg from '../assets/aumax.svg';
+import recibosImg from '../assets/recibos.svg';
 
 const PROJECTS = [
+    {
+        id_prefix: 'proj8',
+        title: 'CRM Multi-canal de WhatsApp',
+        description: 'Monitor operativo tipo CRM que unifica varios números de WhatsApp de la empresa (clientes, equipo interno y cartas de porte) en una sola bandeja: conversaciones con estados de resolución, salud de colas por canal, alertas, historial, audios y reportes. Frontend React contra API REST de Django. Proyecto privado para MolinosMarimbo.',
+        images: [crm1Img, crm2Img],
+        tags: ['React', 'Django', 'DRF', 'WhatsApp Cloud API', 'PostgreSQL', 'Docker'],
+        demoUrl: 'https://crm.marimbo.cloud/'
+    },
+    {
+        id_prefix: 'proj12',
+        title: 'Transcripción y Resumen de Audios con IA',
+        description: 'Sistema productivo que recibe audios de vendedores por WhatsApp Cloud API y los procesa de forma asíncrona: descarga, conversión, transcripción y resumen con IA (Gemini/OpenAI), panel con filtros y estadísticas por vendedor, y campañas por templates aprobados en Meta. Proyecto privado para MolinosMarimbo.',
+        images: [ops1Img, ops2Img],
+        tags: ['Django', 'Celery', 'Redis', 'PostgreSQL', 'Gemini', 'WhatsApp Cloud API', 'Docker']
+    },
+    {
+        id_prefix: 'proj9',
+        title: 'Bot de Cartas de Porte Electrónicas (ARCA)',
+        description: 'Bot conversacional de WhatsApp que guía a los clientes en la confección de Cartas de Porte electrónicas: captura los datos por diálogo con máquina de estados y sesiones persistentes, valida y emite la CPE ante ARCA (WSCPE, SOAP/WSAA) devolviendo número de CPE y CTG en el momento. Proyecto privado para MolinosMarimbo.',
+        image: cartaPorteImg,
+        tags: ['Python', 'Django', 'ARCA/WSCPE', 'SOAP', 'WhatsApp Cloud API', 'Celery']
+    },
+    {
+        id_prefix: 'proj10',
+        title: 'Tickets de Descarga de Camiones (Balanza + ARCA)',
+        description: 'Módulo que se integra con el sistema de balanza (axControl) para tomar los datos reales de cada descarga de camiones y con ARCA (WSCPE) para confeccionar el ticket de ingreso en PDF —CTG, carta de porte, grano, procedencia/destino y pesos— y enviárselo automáticamente al transportista por WhatsApp. Proyecto privado para MolinosMarimbo.',
+        image: aumaxImg,
+        tags: ['Python', 'Django', 'ARCA/WSCPE', 'SOAP', 'PyMuPDF', 'WhatsApp Cloud API']
+    },
+    {
+        id_prefix: 'proj11',
+        title: 'Recibos de Sueldo por WhatsApp con Firma Digital',
+        description: 'Módulo de RRHH que parsea el PDF maestro de recibos por página, hace matching por DNI y nombre contra empleados, firma digitalmente cada recibo (certificado P12/PFX) y lo envía por WhatsApp mediante un portal seguro con validación OTP, auditoría de eventos y reintentos asíncronos. Proyecto privado para MolinosMarimbo.',
+        image: recibosImg,
+        tags: ['Django', 'Celery', 'Firma Digital', 'OTP', 'WhatsApp Cloud API', 'PostgreSQL']
+    },
+    {
+        id_prefix: 'proj13',
+        title: 'Conciliación Bancaria Automática con IA',
+        description: 'Backend Django/DRF para conciliación bancaria automática y asistida por IA. Importa extractos XLSX de 6 bancos argentinos, propone matches validados localmente y deja la decisión final a un operador vía API. Stack con Celery, MinIO y despliegue en Dokploy. Proyecto privado para MolinosMarimbo.',
+        images: [conciliar1Img, conciliar2Img],
+        tags: ['Django', 'DRF', 'Gemini', 'Celery', 'PostgreSQL', 'MinIO', 'Docker']
+    },
+    {
+        id_prefix: 'proj7',
+        title: 'Vales OCR: Digitalización de Vales Manuscritos',
+        description: 'Plataforma web que digitaliza vales manuscritos con OCR asistido por IA: carga de fotos, extracción de datos, match contra clientes reales con alias sugeridos, revisión manual y carga de lotes al ERP. Frontend React con JWT y CSP estricta, deploy automático con GitHub Actions y Dokploy.',
+        images: [vales1Img, vales2Img],
+        tags: ['React', 'Django', 'OCR', 'Gemini', 'JWT', 'Nginx', 'GitHub Actions'],
+        demoUrl: 'https://vales.mativiglianco.cloud/'
+    },
     {
         id_prefix: 'proj5',
         title: 'Naranja Autoservicio (e-commerce Django + React)',
