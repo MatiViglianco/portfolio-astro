@@ -8,8 +8,11 @@ import erp2Img from '../assets/erp2.jpg';
 import erp3Img from '../assets/erp3.jpg';
 import crmMarimboImg from '../assets/crmMarimbo.svg';
 import conciliacionImg from '../assets/conciliacion.svg';
+import conciliacionArquitecturaImg from '../assets/conciliacionArquitectura.svg';
+import conciliacionImpactoImg from '../assets/conciliacionImpacto.svg';
 import valesOcrImg from '../assets/valesOcr.svg';
 import cartaPorteImg from '../assets/cartaPorte.svg';
+import erpArquitecturaImg from '../assets/erpArquitectura.svg';
 
 const PROJECTS = [
     {
@@ -17,7 +20,7 @@ const PROJECTS = [
         title: 'Conciliación Bancaria Asistida por IA',
         description: 'Backend Django/DRF que normaliza extractos de seis bancos argentinos, ejecuta reglas determinísticas y usa IA únicamente para los casos ambiguos. La decisión final permanece bajo control humano y cada resultado conserva trazabilidad.',
         impact: 'Resultado: -43% de tokens de entrada, 46 filas repetidas eliminadas y más de 160 pruebas automatizadas en el flujo productivo.',
-        image: conciliacionImg,
+        images: [conciliacionImg, conciliacionArquitecturaImg, conciliacionImpactoImg],
         tags: ['Django', 'DRF', 'Gemini', 'Celery', 'PostgreSQL', 'MinIO', 'Docker'],
         caseStudyUrl: 'https://github.com/MatiViglianco/MatiViglianco/blob/main/case-studies/ai-assisted-bank-reconciliation.md'
     },
@@ -35,7 +38,7 @@ const PROJECTS = [
         title: 'ERP de Operaciones, Finanzas y RRHH',
         description: 'ERP modular con ventas, balanza, gastos, bancos, cuentas corrientes, facturación, cobranzas y sueldos. Incluye separación por sucursal, importaciones idempotentes, auditoría y flujos de revisión.',
         impact: 'Ingeniería verificable: 86 pruebas backend, pruebas E2E con Playwright, CI en GitHub Actions y despliegue containerizado.',
-        images: [erp1Img, erp2Img, erp3Img],
+        images: [erp1Img, erp2Img, erp3Img, erpArquitecturaImg],
         tags: ['Django', 'DRF', 'React', 'PostgreSQL', 'MUI', 'Playwright', 'Docker'],
         repoUrl: 'https://github.com/MatiViglianco/ERP-Final'
     },
