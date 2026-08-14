@@ -49,6 +49,13 @@
     object-fit: cover;
 }
 
+@media (max-width: 767px) {
+    .ring-container {
+        width: 270px;
+        height: 270px;
+    }
+}
+
 html {
     scroll-behavior: smooth;
 }

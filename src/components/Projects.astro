@@ -1,108 +1,101 @@
 ---
 import ProjectItem from './ProjectItem.astro';
-import cuentaCorrienteImg from '../assets/cuentaCorriente.jpg';
-import coinLatamImg from '../assets/coinLatam.png';
-import p2pImg from '../assets/p2p.jpg';
-import itbankImg from '../assets/itbank.png';
 import naranja1Img from '../assets/naranja1.jpg';
 import naranja2Img from '../assets/naranja2.jpg';
 import naranja3Img from '../assets/naranja3.jpg';
 import erp1Img from '../assets/erp1.jpg';
 import erp2Img from '../assets/erp2.jpg';
 import erp3Img from '../assets/erp3.jpg';
-import erp4Img from '../assets/erp4.jpg';
-import erp5Img from '../assets/erp5.jpg';
-import erp6Img from '../assets/erp6.jpg';
-import erp7Img from '../assets/erp7.jpg';
-import erp8Img from '../assets/erp8.jpg';
-import erp9Img from '../assets/erp9.jpg';
 import crmMarimboImg from '../assets/crmMarimbo.svg';
-import whatsappIAImg from '../assets/whatsappIA.svg';
 import conciliacionImg from '../assets/conciliacion.svg';
 import valesOcrImg from '../assets/valesOcr.svg';
 import cartaPorteImg from '../assets/cartaPorte.svg';
-import aumaxImg from '../assets/aumax.svg';
-import recibosImg from '../assets/recibos.svg';
 
 const PROJECTS = [
     {
+        id_prefix: 'proj13',
+        title: 'Conciliación Bancaria Asistida por IA',
+        description: 'Backend Django/DRF que normaliza extractos de seis bancos argentinos, ejecuta reglas determinísticas y usa IA únicamente para los casos ambiguos. La decisión final permanece bajo control humano y cada resultado conserva trazabilidad.',
+        impact: 'Resultado: -43% de tokens de entrada, 46 filas repetidas eliminadas y más de 160 pruebas automatizadas en el flujo productivo.',
+        image: conciliacionImg,
+        tags: ['Django', 'DRF', 'Gemini', 'Celery', 'PostgreSQL', 'MinIO', 'Docker'],
+        caseStudyUrl: 'https://github.com/MatiViglianco/MatiViglianco/blob/main/case-studies/ai-assisted-bank-reconciliation.md'
+    },
+    {
         id_prefix: 'proj8',
         title: 'CRM Multi-canal de WhatsApp',
-        description: 'Monitor operativo tipo CRM que unifica varios números de WhatsApp de la empresa (clientes, equipo interno y cartas de porte) en una sola bandeja: conversaciones con estados de resolución, salud de colas por canal, alertas, historial, audios y reportes. Frontend React contra API REST de Django. Proyecto privado para MolinosMarimbo.',
+        description: 'Plataforma operativa que reúne varios números de WhatsApp en una sola bandeja, con estados de resolución, salud de colas por canal, alertas, historial, audios y reportes. Frontend React sobre una API REST de Django.',
+        impact: 'Impacto: un único punto de control para conversaciones comerciales, operaciones internas y documentación logística.',
         image: crmMarimboImg,
         tags: ['React', 'Django', 'DRF', 'WhatsApp Cloud API', 'PostgreSQL', 'Docker'],
         demoUrl: 'https://crm.marimbo.cloud/'
     },
     {
-        id_prefix: 'proj12',
-        title: 'Transcripción y Resumen de Audios con IA',
-        description: 'Sistema productivo que recibe audios de vendedores por WhatsApp Cloud API y los procesa de forma asíncrona: descarga, conversión, transcripción y resumen con IA (Gemini/OpenAI), panel con filtros y estadísticas por vendedor, y campañas por templates aprobados en Meta. Proyecto privado para MolinosMarimbo.',
-        image: whatsappIAImg,
-        tags: ['Django', 'Celery', 'Redis', 'PostgreSQL', 'Gemini', 'WhatsApp Cloud API', 'Docker']
-    },
-    {
-        id_prefix: 'proj9',
-        title: 'Bot de Cartas de Porte Electrónicas (ARCA)',
-        description: 'Bot conversacional de WhatsApp que guía a los clientes en la confección de Cartas de Porte electrónicas: captura los datos por diálogo con máquina de estados y sesiones persistentes, valida y emite la CPE ante ARCA (WSCPE, SOAP/WSAA) devolviendo número de CPE y CTG en el momento. Proyecto privado para MolinosMarimbo.',
-        image: cartaPorteImg,
-        tags: ['Python', 'Django', 'ARCA/WSCPE', 'SOAP', 'WhatsApp Cloud API', 'Celery']
-    },
-    {
-        id_prefix: 'proj10',
-        title: 'Tickets de Descarga de Camiones (Balanza + ARCA)',
-        description: 'Módulo que se integra con el sistema de balanza (axControl) para tomar los datos reales de cada descarga de camiones y con ARCA (WSCPE) para confeccionar el ticket de ingreso en PDF —CTG, carta de porte, grano, procedencia/destino y pesos— y enviárselo automáticamente al transportista por WhatsApp. Proyecto privado para MolinosMarimbo.',
-        image: aumaxImg,
-        tags: ['Python', 'Django', 'ARCA/WSCPE', 'SOAP', 'PyMuPDF', 'WhatsApp Cloud API']
-    },
-    {
-        id_prefix: 'proj11',
-        title: 'Recibos de Sueldo por WhatsApp con Firma Digital',
-        description: 'Módulo de RRHH que parsea el PDF maestro de recibos por página, hace matching por DNI y nombre contra empleados, firma digitalmente cada recibo (certificado P12/PFX) y lo envía por WhatsApp mediante un portal seguro con validación OTP, auditoría de eventos y reintentos asíncronos. Proyecto privado para MolinosMarimbo.',
-        image: recibosImg,
-        tags: ['Django', 'Celery', 'Firma Digital', 'OTP', 'WhatsApp Cloud API', 'PostgreSQL']
-    },
-    {
-        id_prefix: 'proj13',
-        title: 'Conciliación Bancaria Automática con IA',
-        description: 'Backend Django/DRF para conciliación bancaria automática y asistida por IA. Importa extractos XLSX de 6 bancos argentinos, propone matches validados localmente y deja la decisión final a un operador vía API. Stack con Celery, MinIO y despliegue en Dokploy. Proyecto privado para MolinosMarimbo.',
-        image: conciliacionImg,
-        tags: ['Django', 'DRF', 'Gemini', 'Celery', 'PostgreSQL', 'MinIO', 'Docker']
+        id_prefix: 'proj6',
+        title: 'ERP de Operaciones, Finanzas y RRHH',
+        description: 'ERP modular con ventas, balanza, gastos, bancos, cuentas corrientes, facturación, cobranzas y sueldos. Incluye separación por sucursal, importaciones idempotentes, auditoría y flujos de revisión.',
+        impact: 'Ingeniería verificable: 86 pruebas backend, pruebas E2E con Playwright, CI en GitHub Actions y despliegue containerizado.',
+        images: [erp1Img, erp2Img, erp3Img],
+        tags: ['Django', 'DRF', 'React', 'PostgreSQL', 'MUI', 'Playwright', 'Docker'],
+        repoUrl: 'https://github.com/MatiViglianco/ERP-Final'
     },
     {
         id_prefix: 'proj7',
-        title: 'Vales OCR: Digitalización de Vales Manuscritos',
-        description: 'Plataforma web que digitaliza vales manuscritos con OCR asistido por IA: carga de fotos, extracción de datos, match contra clientes reales con alias sugeridos, revisión manual y carga de lotes al ERP. Frontend React con JWT y CSP estricta, deploy automático con GitHub Actions y Dokploy.',
+        title: 'Vales OCR: Digitalización Asistida',
+        description: 'Plataforma que transforma fotografías de vales manuscritos en lotes revisables: extracción con IA, normalización, matching contra clientes reales, alias aprendidos y carga controlada al ERP.',
+        impact: 'Diseñada con revisión humana, trazabilidad por lote y despliegue automático para reducir errores de carga sin delegar decisiones sensibles a la IA.',
         image: valesOcrImg,
         tags: ['React', 'Django', 'OCR', 'Gemini', 'JWT', 'Nginx', 'GitHub Actions'],
         demoUrl: 'https://vales.mativiglianco.cloud/'
     },
     {
         id_prefix: 'proj5',
-        title: 'Naranja Autoservicio (e-commerce Django + React)',
-        description: 'Tienda online para autoservicio con Django/DRF y Vite/React. Catálogo, stock, cupones y órdenes; carrito persistente y checkout por WhatsApp. Búsqueda sin acentos, promociones y estadísticas en el admin. CI/CD en Dokploy con Postgres.',
+        title: 'Naranja Autoservicio',
+        description: 'E-commerce Django/React con catálogo, stock, promociones, cupones, órdenes, carrito persistente y checkout por WhatsApp. Incluye búsqueda tolerante a acentos y estadísticas administrativas.',
+        impact: 'Resultado: un canal de pedidos simple para clientes y una operación comercial centralizada para el negocio.',
         images: [naranja1Img, naranja2Img, naranja3Img],
-        tags: ['Django', 'Django REST Framework', 'React', 'Vite', 'PostgreSQL', 'CI/CD', 'Docker']
+        tags: ['Django', 'DRF', 'React', 'Vite', 'PostgreSQL', 'CI/CD', 'Docker'],
+        repoUrl: 'https://github.com/MatiViglianco/naranja-autoservicio'
     },
     {
-        id_prefix: 'proj6',
-        title: 'ERP Interno de Operaciones y Finanzas (Kretz)',
-        description: 'ERP interno con módulos de ventas, gastos, cuentas corrientes y estadísticas. Integra datos bancarios, carga manual de egresos, clasificación por categorías y visualizaciones con gráficos. Stack: Django/DRF, React, MUI, Chart.js, PostgreSQL, JWT y Docker. Enfoque en performance, consistencia de datos y experiencia de usuario.',
-        images: [erp1Img, erp2Img, erp3Img, erp4Img, erp5Img, erp6Img, erp7Img, erp8Img, erp9Img],
-        tags: ['Django', 'Django REST Framework', 'React', 'MUI', 'Chart.js', 'PostgreSQL', 'JWT', 'Docker']
-    },
-    { id_prefix: 'proj1', title: 'AppCuentaCorriente: Gestión de Clientes', description: 'Aplicación web para la gestión de cuentas corrientes de clientes, usando localStorage para persistir los datos. Permite registrar clientes, transacciones y pagos.', image: cuentaCorrienteImg, tags: ['React', 'TypeScript', 'Vite', 'Tailwind CSS'], demoUrl: 'https://mativiglianco.github.io/AppCuentaCorriente/', repoUrl: 'https://github.com/MatiViglianco/AppCuentaCorriente' },
-    { id_prefix: 'proj2', title: 'CoinLatam: Interacción con Criptomonedas', description: 'Proyecto que ofrece cotizaciones de criptomonedas en tiempo real con una interfaz moderna y fluida.', image: coinLatamImg, tags: ['React', 'Next.js', 'Node.js', 'MongoDB'], demoUrl: '#', repoUrl: 'https://github.com/julianvidela/coin-latam' },
-    { id_prefix: 'proj3', title: 'P2Pbetting: A Chainlink Hackathon', description: 'Plataforma descentralizada y segura para apuestas P2P basada en contratos inteligentes en la blockchain.', image: p2pImg, tags: ['Solidity', 'React', 'Hardhat', 'Chainlink'], demoUrl: 'https://martinllobell.github.io/dapp/', repoUrl: 'https://github.com/martinllobell/dapp' },
-    { id_prefix: 'proj4', title: 'ITBANK: Banco Virtual', description: 'Plataforma web de un banco virtual para la gestión de clientes y operaciones financieras.', image: itbankImg, tags: ['Javascript', 'Django', 'PostgreSQL', 'CSS', 'Bootstrap', 'API REST'], demoUrl: '#', repoUrl: 'https://github.com/ItbaGrupo5' }
+        id_prefix: 'proj9',
+        title: 'Cartas de Porte por WhatsApp y ARCA',
+        description: 'Bot conversacional con máquina de estados y sesiones persistentes que captura datos, valida la operación y emite Cartas de Porte electrónicas mediante WSCPE, SOAP y WSAA.',
+        impact: 'Impacto: el cliente recibe CPE y CTG dentro del mismo flujo de WhatsApp, reduciendo carga manual y puntos de error.',
+        image: cartaPorteImg,
+        tags: ['Python', 'Django', 'ARCA/WSCPE', 'SOAP', 'WhatsApp Cloud API', 'Celery']
+    }
+];
+
+const OTHER_PROJECTS = [
+    { name: 'AppCuentaCorriente', url: 'https://github.com/MatiViglianco/AppCuentaCorriente', key: 'other_proj1' },
+    { name: 'CoinLatam', url: 'https://github.com/julianvidela/coin-latam', key: 'other_proj2' },
+    { name: 'P2Pbetting — Chainlink Hackathon', url: 'https://github.com/martinllobell/dapp', key: 'other_proj3' },
+    { name: 'ITBANK', url: 'https://github.com/ItbaGrupo5', key: 'other_proj4' }
 ];
 ---
 <section id="projects" class="py-20">
-    <h2 class="section-title text-3xl font-bold text-white mb-12 flex items-center reveal-on-scroll" data-translate="projects_title">
-        Proyectos Destacados
-    </h2>
-    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-stretch">
-        {PROJECTS.map((project, index) => (
-            <ProjectItem {...project} wide={PROJECTS.length % 2 === 1 && index === PROJECTS.length - 1} />
-        ))}
+    <div class="mb-12 reveal-on-scroll">
+        <h2 class="section-title text-3xl font-bold text-white mb-4 flex items-center" data-translate="projects_title">
+            Casos de trabajo destacados
+        </h2>
+        <p class="text-gray-400 max-w-3xl text-lg" data-translate="projects_intro">
+            Una selección breve de sistemas reales. Cada caso prioriza el problema operativo, las decisiones de ingeniería y el resultado por encima de una lista de tecnologías.
+        </p>
     </div>
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-stretch">
+        {PROJECTS.map(project => <ProjectItem {...project} />)}
+    </div>
+
+    <details class="mt-10 rounded-lg border border-slate-700/60 bg-slate-900/30 p-5 reveal-on-scroll">
+        <summary class="cursor-pointer font-semibold text-purple-300" data-translate="other_projects_title">Otros proyectos y colaboraciones</summary>
+        <ul class="mt-5 grid gap-4 md:grid-cols-2">
+            {OTHER_PROJECTS.map(project => (
+                <li>
+                    <a class="font-semibold text-white hover:text-purple-300" href={project.url} target="_blank" rel="noopener noreferrer">{project.name}</a>
+                    <p class="mt-1 text-sm text-gray-400" data-translate={project.key}></p>
+                </li>
+            ))}
+        </ul>
+    </details>
 </section>
