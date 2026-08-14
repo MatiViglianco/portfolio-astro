@@ -7,12 +7,7 @@ const CERTIFICATIONS = [
     { id_prefix: 'cert1', title: 'Análisis de Datos de Google', issuer: 'Coursera (sept. 2024)' },
     { id_prefix: 'cert2', title: 'Arquitectura Software Moderna', issuer: 'Udemy (mar. 2024)' },
     { id_prefix: 'cert3', title: 'Principios SOLID y Clean Code', issuer: 'Udemy (mar. 2024)' },
-    { id_prefix: 'cert4', title: 'Typescript: Desde las Bases', issuer: 'Udemy (dic. 2023)' },
     { id_prefix: 'cert5', title: 'AWS Cloud Technical Essentials', issuer: 'Coursera (feb. 2023)' },
-    { id_prefix: 'cert6', title: 'Google Cloud: Bits y Bytes de Redes', issuer: 'Coursera (oct. 2023)' },
-    { id_prefix: 'cert7', title: 'EF SET 44/100 (B1 Intermediate)', issuer: 'EF SET (jun. 2024)' },
-    { id_prefix: 'cert8', title: 'Backend 1: Introducción a Java', issuer: 'Egg (may. 2023)' },
-    { id_prefix: 'cert9', title: 'React Js', issuer: 'Coderhouse (sept. 2022)' },
 ];
 ---
 <section id="certifications" class="py-20">
@@ -23,7 +18,7 @@ const CERTIFICATIONS = [
         </svg>
         Licencias y Certificaciones
     </h2>
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
         {CERTIFICATIONS.map(cert => (
             <CertificationItem {...cert} />
         ))}

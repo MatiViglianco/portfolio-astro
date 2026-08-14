@@ -1,6 +1,6 @@
-# Portafolio Personal
+# Portfolio — Backend & AI Integrations Engineer
 
-¡Bienvenido al repositorio de mi portafolio personal! Este proyecto fue creado desde cero con **Astro** y estilizado con **Tailwind CSS** para mostrar mis habilidades, proyectos y experiencia profesional de una manera moderna y dinámica.
+Portfolio profesional de Matías Viglianco, orientado a backend con Python/Django, integraciones de IA y automatización empresarial. Presenta una selección breve de sistemas reales, resultados medibles y enlaces verificables.
 
 **Puedes ver el sitio en vivo aquí:** [https://MatiViglianco.github.io/portfolio-astro/](https://MatiViglianco.github.io/portfolio-astro/)
 
@@ -11,6 +11,7 @@
 * **Diseño Moderno y Responsivo:** Totalmente adaptable a cualquier dispositivo, desde móviles hasta pantallas de escritorio.
 * **Animaciones Dinámicas:** Implementación de animaciones de aparición al hacer scroll para una experiencia de usuario más atractiva.
 * **Soporte Multi-idioma:** Funcionalidad para cambiar entre Español e Inglés, con traducciones gestionadas a través de un script personalizado.
+* **Selección Curada:** Seis casos destacados con problema, decisiones de ingeniería, impacto y evidencia disponible.
 * **Componentes Modulares:** Estructurado con componentes reutilizables de Astro para un mantenimiento y escalabilidad sencillos.
 * **Optimización de Activos:** Uso de los componentes `<Image>` de Astro para optimizar el rendimiento y la carga de imágenes.
 * **Despliegue Automatizado:** Configuración de GitHub Actions para un despliegue continuo en GitHub Pages.
